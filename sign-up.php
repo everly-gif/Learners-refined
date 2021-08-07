@@ -9,10 +9,11 @@ if(isset($_POST['submit'])){
     $email=mysqli_real_escape_string($conn,$_POST['email']);
     $password=mysqli_real_escape_string($conn,$_POST['password']);
     $role=mysqli_real_escape_string($conn,$_POST['role']);
+    $univ=mysqli_real_escape_string($conn,$_POST['univ']);
     $hash = password_hash($password, PASSWORD_DEFAULT);
     $unique=$conn->query("SELECT `email` FROM $table WHERE `email`='$email' ");
     if(mysqli_num_rows($unique)==0){
-        $query=$conn->query("INSERT INTO $table VALUES('','$name','$email','$hash','$role')");
+        $query=$conn->query("INSERT INTO $table VALUES('','$name','$email','$hash','$role','$univ')");
         if($query){
             $alert=true;
         }
@@ -83,11 +84,24 @@ if($alert) {
     <input type="text" class="form-control" placeholder="Enter your name" id="name" name="name"><br>
     <input type="email" class="form-control" placeholder="Enter your email" id="email" name="email"><br>
     <input type="password" class="form-control" placeholder="Enter your password" id="password" name="password"><br>
+    <input type="text" class="form-control" placeholder="Enter your College/School Name" id="univ" name="univ"><br>
     <input type="radio"  id="teacher" name="role" value="0">Teacher<br>
     <input type="radio"  id="student" name="role" value="1">Student<br><br>
     <button type="submit"  name="submit">Sign Up</button><br><br>
     <p>Already have an account ? <a href="login.php">login</a></p>
 </form>
 </div>
+<script>
+    // var search=document.getElementById(univ);
+    // search.addEventListener('keyup',function(e){
+    //  filter_list(e.target.value);
+    // });
+    // const filter_list=searchValue=>{
+    //     searchValue=searchValue.toLowerCase();
+    //     options.forEach(option=>{
+    //         let term=option.firstELement
+    //     })
+    // };
+</script>
 </body>
 </html>

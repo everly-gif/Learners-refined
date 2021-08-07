@@ -47,12 +47,58 @@ if (isset($_POST['content']) && isset($_POST['author']) && isset($_POST['author_
     $query="DELETE FROM $table WHERE `id`=$id";
     $res=$mysqli->query($query);
 }
-if(isset($_POST['deleteid'])){
-    $post_id=$_POST['deleteid'];
+if(isset($_POST['id'])){
+    $post_id=$_POST['id'];
     $query="DELETE FROM `post` WHERE `id`=$post_id ";
     $query2="DELETE FROM `comments` WHERE `post_id`=$post_id ";
     $res=$mysqli->query($query);
     $res2=$mysqli->query($query2);
+}
+if(isset($_POST['view_id'])){
+    $eventid=$_POST['view_id'];
+    $query=$mysqli->query("SELECT `event_details` FROM `events` WHERE `event_id`='$eventid'");
+    if(mysqli_num_rows($query)){
+        $data=$query->fetch_assoc();
+
+        echo '<div>'.$data['event_details'].'</div>';
+
+        
+    }
+}
+if(isset($_POST['search']) && isset($_POST['univ'])){
+    $search=$_POST['search'];
+    $univ=$_POST['univ'];
+    $query=$mysqli->query("SELECT * FROM `events` where (`event_name` like ('%$search%') OR `event_details` like ('%$search%')) AND `org`='$univ'");
+    if(mysqli_num_rows($query)){
+
+       while( $data=$query->fetch_assoc()){
+        echo '<div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">'.$data['event_name'].'</h5>';
+          if (strlen($data['event_details'])<200){
+           echo '<p class="card-text">'.$data['event_details'].'</p>';
+          }
+          else{
+           echo '<p class="card-text">'.substr($data['event_details'],0,200).'<span>'.'.....'.'</span></p>'.'<button class="btn btn-primary" data-toggle="modal" data-target="#Modal"  id='.$data['event_id']. ' onclick="view(this.id)">Read more</button>';
+           }
+         echo '
+          <p  class="text-danger">'.$data['location'].'</p>
+        </div>
+      </div>';
+       }
+
+        
+
+        
+    }
+    else{
+        echo "<p>Nothing to display</p>";
+    }
+}
+if(isset($_POST['event_id'])){
+    $event_id=$_POST['event_id'];
+    $query="DELETE FROM `events` WHERE `event_id`=$event_id ";
+    $res=$mysqli->query($query);
 }
 ?>
     

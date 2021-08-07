@@ -14,6 +14,7 @@
     $result=mysqli_query($conn,$sql);
     if($result){
       echo"success";
+      header('location:classroom.php?code='.$c_id.'');
     }
     else{
       echo"failed";
