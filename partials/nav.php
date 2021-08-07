@@ -24,7 +24,7 @@
           </li>
           
         </ul>
-        <form class="d-flex">
+        <form class="d-flex navbar-expand-sm">
           <input class="form-control me-2" type="search" placeholder="Class Code" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
