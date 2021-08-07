@@ -72,7 +72,7 @@ if (isset($_POST['thread_submit'])){
 </div>
 <br>
    <div class="container">
-        
+    <?php if(!isset($_POST['submit'])):?>
     <form method="POST" id="mainform">
         <input type="text" placeholder="title" id="title" class="form-control"name="title" required><br>
         <textarea   id="editor" name="editor"  required></textarea><br>
@@ -84,6 +84,7 @@ if (isset($_POST['thread_submit'])){
         }
         ?>
     </form>
+    <?php endif;?>
    </div>
 
    <div class="container recent-posts">
@@ -91,9 +92,40 @@ if (isset($_POST['thread_submit'])){
        <h1>Recently added</h1>
        <div class="container" id="display-thread">
        <?php
-
+        if(isset($_POST['submit'])){
+            $search=mysqli_real_escape_string($mysqli,$_POST['search']);
+            if($search){
+                $result=$mysqli->query("SELECT * FROM $table where (`title` like ('%$search%') OR `content` like ('%$search%')) AND `class_id`='CLS345'");
+                if(mysqli_num_rows($result)==0){
+                    echo "<p class='container' style='padding:0px; margin:30px 0px;'>Looks Like there's not a lot of discussions , <a href='start-post.php'>start your own!</a> </p>";
+                    $result=$mysqli -> query("SELECT * FROM $table WHERE `class_id`='CLS345' ORDER BY `id` DESC ") or die($mysqli->error);
+                    while($data=$result->fetch_assoc()){
+                        $id=$data['user_id'];
+                        $query2="SELECT `id`,`name` FROM `users` WHERE `id`= '$id'";
+                        $username=$mysqli->query($query2);
+                        $res=$username->fetch_assoc();
+                        echo '<div class="container"><p style="margin-bottom:0;color:orangered;font-size:15px;">'.$res['name'].' shared </p>';
+                        echo '<p>'.$data['title'].'  </p>';
+                        echo '<p>'.substr($data['content'],0,200).'  </p>'.'<a href="post.php?id='.$data['id'].'">Help Out</a></div>';
+                    }
+                  }
+                  else{
+                    echo "<p class='container' style='padding:0px; margin:30px 0px;'>Search Results </p>";
+                    while($data=$result->fetch_assoc()){
+                        $id=$data['user_id'];
+                        $query2="SELECT `id`,`name` FROM `users` WHERE `id`= '$id'";
+                        $username=$mysqli->query($query2);
+                        $res=$username->fetch_assoc();
+                        echo '<div class="container"><p style="margin-bottom:0;color:orangered;font-size:15px;">'.$res['name'].' shared </p>';
+                        echo '<p>'.$data['title'].'  </p>';
+                        echo '<p>'.substr($data['content'],0,200).'  </p>'.'<a href="post.php?id='.$data['id'].'">Help Out</a></div>';
+                    }
+                  }
+            }
+            
+        }
+        else{
         $query="SELECT * FROM $table WHERE `class_id`='CLS345' ORDER BY `timestamp` DESC";
-       
         $result=$mysqli->query($query);
         while($data=$result->fetch_assoc()){
         $id=$data['user_id'];
@@ -102,9 +134,10 @@ if (isset($_POST['thread_submit'])){
         $res=$username->fetch_assoc();
         echo '<div class="container"><p style="margin-bottom:0;color:orangered;font-size:15px;">'.$res['name'].' shared </p>';
         echo '<p>'.$data['title'].'  </p>';
-        echo '<p>'.$data['content'].'  </p>'.'<a href="post.php?id='.$data['id'].'">Help Out</a></div>';
-      
+        echo '<p>'.substr($data['content'],0,200).'  </p>'.'<a href="post.php?id='.$data['id'].'">Help Out</a></div>';
+        
         }
+    }
 
 ?>
        </div>
