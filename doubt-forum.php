@@ -92,11 +92,18 @@ if (isset($_POST['thread_submit'])){
        <div class="container" id="display-thread">
        <?php
 
-        $query="SELECT * FROM $table WHERE `class_id`='CLS345'";
+        $query="SELECT * FROM $table WHERE `class_id`='CLS345' ORDER BY `timestamp` DESC";
+       
         $result=$mysqli->query($query);
         while($data=$result->fetch_assoc()){
-        echo '<div class="container"><p style="margin-bottom:0;color:orangered;font-size:15px;">'.$data['author'].' shared </p>';
-        echo '<p style="margin-bottom:2px;" ><a class="link" href="post.php?id='.$data['post_id'].'">'.stripslashes($data['title']).' </a></p></div><br>';
+        $id=$data['user_id'];
+        $query2="SELECT `id`,`name` FROM `users` WHERE `id`= '$id'";
+        $username=$mysqli->query($query2);
+        $res=$username->fetch_assoc();
+        echo '<div class="container"><p style="margin-bottom:0;color:orangered;font-size:15px;">'.$res['name'].' shared </p>';
+        echo '<p>'.$data['title'].'  </p>';
+        echo '<p>'.$data['content'].'  </p>'.'<a href="post.php?id='.$data['id'].'">Help Out</a></div>';
+      
         }
 
 ?>

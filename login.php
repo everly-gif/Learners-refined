@@ -1,6 +1,6 @@
 <?php
 
-include './partials/dbconct.php';
+include './partials/db.php';
 $alert=false;
 $erroralert=false;
 $table="users";
@@ -53,7 +53,7 @@ if(isset($_POST['submit'])){
 </head>
 <body>
 <!-- Nav bar  -->
-<?php include './partials/nav.php'; ?>
+<?php include './partials/header.php'; ?>
 <?php if($alert) {
 
     
