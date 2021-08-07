@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Education</a>
@@ -24,10 +25,15 @@
           </li>
           
         </ul>
-        <form class="d-flex navbar-expand-sm">
-          <input class="form-control me-2" type="search" placeholder="Class Code" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        <div class="navbar-right navbar-expand">
+          <form action="search.php" method="GET" class="d-flex navbar-expand-sm">
+            <input class="form-control me-2" type="search" name="code" placeholder="Class Code" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+            <a style="margin:0 10px" class="btn btn-outline-success" href="login.php">Login</a>
+            
+          </form>
+
+        </div>
       </div>
     </div>
   </nav>

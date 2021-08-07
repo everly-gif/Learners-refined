@@ -1,18 +1,18 @@
 <?php
 
-include './partials/db.php';
+include './partials/dbconct.php';
 $alert=false;
 $erroralert=false;
 $table="users";
 if(isset($_POST['submit'])){
-    $name=mysqli_real_escape_string($mysqli,$_POST['name']);
-    $email=mysqli_real_escape_string($mysqli,$_POST['email']);
-    $password=mysqli_real_escape_string($mysqli,$_POST['password']);
-    $role=mysqli_real_escape_string($mysqli,$_POST['role']);
+    $name=mysqli_real_escape_string($conn,$_POST['name']);
+    $email=mysqli_real_escape_string($conn,$_POST['email']);
+    $password=mysqli_real_escape_string($conn,$_POST['password']);
+    $role=mysqli_real_escape_string($conn,$_POST['role']);
     $hash = password_hash($password, PASSWORD_DEFAULT);
-    $unique=$mysqli->query("SELECT `email` FROM $table WHERE `email`='$email' ");
+    $unique=$conn->query("SELECT `email` FROM $table WHERE `email`='$email' ");
     if(mysqli_num_rows($unique)==0){
-        $query=$mysqli->query("INSERT INTO $table VALUES('','$name','$email','$hash','$role')");
+        $query=$conn->query("INSERT INTO $table VALUES('','$name','$email','$hash','$role')");
         if($query){
             $alert=true;
         }
@@ -32,7 +32,7 @@ if(isset($_POST['submit'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Education</title>
+    <title>Signup</title>
      <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -46,21 +46,10 @@ if(isset($_POST['submit'])){
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-<!-- Nav bar  -->
-<nav class="navbar navbar-default navbar-expand-sm">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
-    </div>
-    <ul class="nav navbar-nav navbar-right navbar-expand-sm">
-      <li class="active nav-item"><a href="#" class="nav-link">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Page 1</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Page 2</a></li>
-      <li class="nav-item"><a href="#"class="nav-link">Page 3</a></li>
-    </ul>
-  </div>
-</nav>
-<?php if($alert) {
+
+<?php 
+include "partials/nav.php";
+if($alert) {
     
     echo ' <div class="alert alert-success 
         alert-dismissible fade show" role="alert" style="margin-bottom:0px;;border-radius:0px;">
