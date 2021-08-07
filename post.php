@@ -130,7 +130,7 @@ function deletePost(id){
     $.ajax({
       url:"backend.php",
       type:"post",
-      data:{deleteid:id},
+      data:{id:id},
       success:function(data,status){
          location.href="doubt-forum.php";
          if(data == 'success')

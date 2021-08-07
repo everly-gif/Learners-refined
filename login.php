@@ -8,7 +8,7 @@ if(isset($_POST['submit'])){
     $email=mysqli_real_escape_string($conn,$_POST['email']);
     $password=mysqli_real_escape_string($conn,$_POST['password']);
     $result=$conn->query("SELECT * FROM $table WHERE `email`='$email'");
-    $details=$conn->query("SELECT `name`,`id`,`password` FROM $table WHERE email='$email'");
+    $details=$conn->query("SELECT `name`,`id`,`password`,`org` FROM $table WHERE email='$email'");
     if(mysqli_num_rows($result) == 1){
         $data=mysqli_fetch_assoc($details);
         $verify=password_verify($password,$data['password']);
@@ -18,6 +18,7 @@ if(isset($_POST['submit'])){
             $_SESSION['email']=$email;
             $_SESSION['username']=$data['name'];
             $_SESSION['user_id'] = $data['id'];
+            $_SESSION['univ']=$data['org'];
             $alert=true;
         }
         else{
