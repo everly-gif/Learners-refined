@@ -1,14 +1,14 @@
 <?php
 
-include './partials/db.php';
+include './partials/dbconct.php';
 $alert=false;
 $erroralert=false;
 $table="users";
 if(isset($_POST['submit'])){
-    $email=mysqli_real_escape_string($mysqli,$_POST['email']);
-    $password=mysqli_real_escape_string($mysqli,$_POST['password']);
-    $result=$mysqli->query("SELECT * FROM $table WHERE `email`='$email'");
-    $details=$mysqli->query("SELECT `name`,`id`,`password` FROM $table WHERE email='$email'");
+    $email=mysqli_real_escape_string($conn,$_POST['email']);
+    $password=mysqli_real_escape_string($conn,$_POST['password']);
+    $result=$conn->query("SELECT * FROM $table WHERE `email`='$email'");
+    $details=$conn->query("SELECT `name`,`id`,`password` FROM $table WHERE email='$email'");
     if(mysqli_num_rows($result) == 1){
         $data=mysqli_fetch_assoc($details);
         $verify=password_verify($password,$data['password']);
@@ -19,6 +19,7 @@ if(isset($_POST['submit'])){
             $_SESSION['username']=$data['name'];
             $_SESSION['user_id'] = $data['id'];
             $alert=true;
+            header('location:index.php');
         }
         else{
             $erroralert="Wrong Credentials, try again!";
@@ -52,19 +53,7 @@ if(isset($_POST['submit'])){
 </head>
 <body>
 <!-- Nav bar  -->
-<nav class="navbar navbar-default navbar-expand-sm">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
-    </div>
-    <ul class="nav navbar-nav navbar-right navbar-expand-sm">
-      <li class="active nav-item"><a href="#" class="nav-link">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Page 1</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Page 2</a></li>
-      <li class="nav-item"><a href="#"class="nav-link">Page 3</a></li>
-    </ul>
-  </div>
-</nav>
+<?php include './partials/nav.php'; ?>
 <?php if($alert) {
     
     echo ' <div class="alert alert-success 
@@ -97,7 +86,7 @@ if(isset($_POST['submit'])){
     <h1>Login</h1>
     <input type="email" class="form-control" placeholder="Enter your email" id="email" name="email"><br>
     <input type="password" class="form-control" placeholder="Enter your password" id="password" name="password"><br>
-    <button type="submit"  name="submit">Login</button><br><br>
+    <button class="btn btn-primary" type="submit"  name="submit">Login</button><br><br>
     <p>Don't have an account ? <a href="sign-up.php">Create an account</a></p>
     <a href="logout.php">logout</a>
 </form>
