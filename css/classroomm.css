@@ -1,0 +1,14 @@
+.body{
+    margin: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.left{
+    display: flex;
+    flex-direction: column;
+    width: 75vw;
+}
+.list-group-item{
+    padding: 10px 50px;
+}
