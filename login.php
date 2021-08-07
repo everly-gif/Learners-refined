@@ -1,6 +1,6 @@
 <?php
 
-include './partials/db.php';
+include './partials/dbconct.php';
 $alert=false;
 $erroralert=false;
 $table="users";
@@ -19,7 +19,6 @@ if(isset($_POST['submit'])){
             $_SESSION['username']=$data['name'];
             $_SESSION['user_id'] = $data['id'];
             $alert=true;
-            header('location:index.php');
         }
         else{
             $erroralert="Wrong Credentials, try again!";
