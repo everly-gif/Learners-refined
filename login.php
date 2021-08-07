@@ -55,6 +55,7 @@ if(isset($_POST['submit'])){
 <!-- Nav bar  -->
 <?php include './partials/nav.php'; ?>
 <?php if($alert) {
+
     
     echo ' <div class="alert alert-success 
         alert-dismissible fade show" role="alert" style="margin-bottom:0px;;border-radius:0px;">
@@ -64,7 +65,7 @@ if(isset($_POST['submit'])){
             <span aria-hidden="true">×</span> 
         </button> 
     </div> ';
-    echo '<meta http-equiv="refresh" content="2;url=login.php" />';
+    // echo '<meta http-equiv="refresh" content="2;url=login.php" />';
      
    }
    if($erroralert) {
@@ -78,7 +79,7 @@ if(isset($_POST['submit'])){
         </div> '; 
    }
 
-
+ 
 ?>
 <!-- form -->
 <div class="container">
