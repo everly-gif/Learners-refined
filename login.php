@@ -52,20 +52,13 @@ if(isset($_POST['submit'])){
 </head>
 <body>
 <!-- Nav bar  -->
-<nav class="navbar navbar-default navbar-expand-sm">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
-    </div>
-    <ul class="nav navbar-nav navbar-right navbar-expand-sm">
-      <li class="active nav-item"><a href="#" class="nav-link">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Page 1</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Page 2</a></li>
-      <li class="nav-item"><a href="#"class="nav-link">Page 3</a></li>
-    </ul>
-  </div>
-</nav>
-<?php if($alert) {
+
+<?php 
+
+include './partials/header.php';
+
+
+if($alert) {
     
     echo ' <div class="alert alert-success 
         alert-dismissible fade show" role="alert" style="margin-bottom:0px;;border-radius:0px;">
@@ -75,7 +68,7 @@ if(isset($_POST['submit'])){
             <span aria-hidden="true">×</span> 
         </button> 
     </div> ';
-    echo '<meta http-equiv="refresh" content="2;url=login.php" />';
+    // echo '<meta http-equiv="refresh" content="2;url=login.php" />';
      
    }
    if($erroralert) {
@@ -89,7 +82,7 @@ if(isset($_POST['submit'])){
         </div> '; 
    }
 
-
+ 
 ?>
 <!-- form -->
 <div class="container">
