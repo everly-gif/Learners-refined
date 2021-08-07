@@ -92,12 +92,12 @@ if (isset($_POST['thread_submit'])){
        <h1>Recently added</h1>
        <div class="container" id="display-thread">
        <?php
-        if(isset($_POST['submit'])){
+        if(isset($_POST['submit']) && !empty($_POST['search'])){
             $search=mysqli_real_escape_string($mysqli,$_POST['search']);
             if($search){
                 $result=$mysqli->query("SELECT * FROM $table where (`title` like ('%$search%') OR `content` like ('%$search%')) AND `class_id`='CLS345'");
                 if(mysqli_num_rows($result)==0){
-                    echo "<p class='container' style='padding:0px; margin:30px 0px;'>Looks Like there's not a lot of discussions , <a href='start-post.php'>start your own!</a> </p>";
+                    echo "<p class='container' style='padding:0px; margin:30px 0px;'>Looks Like there's not a lot of discussions , <a href='doubt-forum.php'>start your own!</a> </p>";
                     $result=$mysqli -> query("SELECT * FROM $table WHERE `class_id`='CLS345' ORDER BY `id` DESC ") or die($mysqli->error);
                     while($data=$result->fetch_assoc()){
                         $id=$data['user_id'];
@@ -106,7 +106,7 @@ if (isset($_POST['thread_submit'])){
                         $res=$username->fetch_assoc();
                         echo '<div class="container"><p style="margin-bottom:0;color:orangered;font-size:15px;">'.$res['name'].' shared </p>';
                         echo '<p>'.$data['title'].'  </p>';
-                        echo '<p>'.substr($data['content'],0,200).'  </p>'.'<a href="post.php?id='.$data['id'].'">Help Out</a></div>';
+                        echo '<p>'.substr($data['content'],0,200).'.....'.' </p>'.'<a href="post.php?id='.$data['id'].'">Help Out</a></div>';
                     }
                   }
                   else{
@@ -118,7 +118,7 @@ if (isset($_POST['thread_submit'])){
                         $res=$username->fetch_assoc();
                         echo '<div class="container"><p style="margin-bottom:0;color:orangered;font-size:15px;">'.$res['name'].' shared </p>';
                         echo '<p>'.$data['title'].'  </p>';
-                        echo '<p>'.substr($data['content'],0,200).'  </p>'.'<a href="post.php?id='.$data['id'].'">Help Out</a></div>';
+                        echo '<p>'.substr($data['content'],0,200).'.......'.'</p>'.'<a href="post.php?id='.$data['id'].'">Help Out</a></div>';
                     }
                   }
             }
@@ -134,8 +134,12 @@ if (isset($_POST['thread_submit'])){
         $res=$username->fetch_assoc();
         echo '<div class="container"><p style="margin-bottom:0;color:orangered;font-size:15px;">'.$res['name'].' shared </p>';
         echo '<p>'.$data['title'].'  </p>';
-        echo '<p>'.substr($data['content'],0,200).'  </p>'.'<a href="post.php?id='.$data['id'].'">Help Out</a></div>';
-        
+        if (strlen($data['content'])<200){
+            echo '<p>'.$data['content'].'</p>'.'<a href="post.php?id='.$data['id'].'">Help Out</a></div>';
+        }
+        else{
+        echo '<p>'.substr($data['content'],0,200).'<span>'.'.....'.'</span></p>'.'<a href="post.php?id='.$data['id'].'">Help Out</a></div>';
+        }
         }
     }
 
