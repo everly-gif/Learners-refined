@@ -51,6 +51,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
          if(isset($_SESSION['univ']) || $_SESSION['univ']==true)
          $univ=$_SESSION['univ'];
          $query=$conn->query("SELECT * FROM $table WHERE `org`='$univ'");
+
          if(mysqli_num_rows($query)){
              while($data=$query->fetch_assoc()){
                  echo '<div class="card" style="width: 18rem;">

@@ -3,7 +3,7 @@
 $host = "localhost";
 $username = "root";
 $password = "";
-$database = "HackACode";
+$database = "education";
 
 $conn = mysqli_connect($host, $username, $password, $database);
 if (!$conn){

@@ -8,7 +8,7 @@ $role=$_GET['role'];
 include './partials/dbconct.php';
 
 if($role==0){
-echo '<h1>Book a call, details will be sent over mail</h1><div class="calendly-inline-widget" data-url="https://calendly.com/" style="min-width:100vw;height:100vh;position:fixed;"></div>
+echo '<h1>Book a call, details will be sent over mail</h1><div class="calendly-inline-widget" data-url="https://calendly.com/yashmalho1999" style="min-width:100vw;height:100vh;position:fixed;"></div>
 <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>';
 }
 

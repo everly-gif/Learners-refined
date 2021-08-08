@@ -10,7 +10,6 @@ if(isset($_SESSION["loggedin"])){
     $classexists=true;
     $classes=json_decode($row["classes"],true);
     $length=count($classes);
-    echo $length;
   }
 }
 else{
@@ -25,7 +24,7 @@ else{
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/classroomm.css">
   <link rel="stylesheet" href="css/search.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
 
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
