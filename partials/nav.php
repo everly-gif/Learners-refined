@@ -22,6 +22,9 @@
             <?php 
             if(isset($_SESSION["loggedin"])){
               echo '<a style="margin:0 10px" class="btn btn-outline-success" href="logout.php">Logout</a>';
+              if($_SESSION["teacher"]){
+                echo '<a style="margin:0 10px; border:3px solid white; color:white;border-radius:50%;font-size: 15px;" class="btn btn-outline-success" href="createclassroom.php">+</a>';
+              }
             }
             else{
               echo'<a style="margin:0 10px" class="btn btn-outline-success" href="login.php">Login</a>';

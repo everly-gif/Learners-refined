@@ -14,11 +14,12 @@ if(isset($_POST['submit'])){
         $verify=password_verify($password,$data['password']);
         if($verify){
             session_start();
+            $_SESSION["teacher"]=false;
             $_SESSION['loggedin']=true;
             $_SESSION['email']=$email;
             $_SESSION['username']=$data['name'];
             $_SESSION['user_id'] = $data['id'];
-            if($_SESSION["role"]==0){
+            if($data["role"]==0){
                 $_SESSION["teacher"]=true;
             }
             $_SESSION['univ']=$data['org'];
