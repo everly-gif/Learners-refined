@@ -8,7 +8,7 @@ if(isset($_POST['submit'])){
     $email=mysqli_real_escape_string($conn,$_POST['email']);
     $password=mysqli_real_escape_string($conn,$_POST['password']);
     $result=$conn->query("SELECT * FROM $table WHERE `email`='$email'");
-    $details=$conn->query("SELECT `name`,`id`,`password`,`org`,`role` FROM $table WHERE email='$email'");
+    $details=$conn->query("SELECT `name`,`id`,`password`,`role`,`org` FROM $table WHERE email='$email'");
     if(mysqli_num_rows($result) == 1){
         $data=mysqli_fetch_assoc($details);
         $verify=password_verify($password,$data['password']);
@@ -24,6 +24,7 @@ if(isset($_POST['submit'])){
             $_SESSION['univ']=$data['org'];
             $_SESSION['role']=$data['role'];
             $alert=true;
+            header("location:index.php");
         }
         else{
             $erroralert="Wrong Credentials, try again!";
@@ -57,7 +58,7 @@ if(isset($_POST['submit'])){
 </head>
 <body>
 <!-- Nav bar  -->
-<?php include './partials/header.php'; ?>
+<?php include './partials/nav.php'; ?>
 <?php if($alert) {
 
     

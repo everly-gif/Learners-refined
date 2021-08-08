@@ -30,12 +30,14 @@ if(isset($_SESSION["loggedin"])){
                             echo 'failed';
                         }
                         if($rowadmin['classes']==""){
+                            echo "1";
                             $adminarr[]=$classcode;
                             $classcode=json_encode($adminarr);
                             $upclass="UPDATE `users` SET `classes` = '$classcode' WHERE `id` = $userid;";
                             $resultupclass=mysqli_query($conn,$upclass);
                         }
                         else{
+                            echo "2";
                             $classes=json_decode($rowadmin['classes'],true);
                             if(!in_array($classcode,$classes)){
                                 $classes[]=$classcode;
@@ -67,15 +69,16 @@ if(isset($_SESSION["loggedin"])){
                             echo 'failed';
                         }
                         if($rowadmin['classes']==""){
+                            echo "3";
                             $adminarr[]=$classcode;
-                            $classcode=json_encode($classcode);
+                            $classcode=json_encode($adminarr);
                             $upclass="UPDATE `users` SET `classes` = '$classcode' WHERE `id` = $userid;";
                             $resultupclass=mysqli_query($conn,$upclass);
                         }
                         else{
+                            echo "4";
                             $classes=json_decode($rowadmin['classes'],true);
                             if(!in_array($userid,$classes)){
-
                                 $classes[]=$classcode;
                                 $classes=json_encode($classes);
                                 $upclass="UPDATE `users` SET `classes` = '$classes' WHERE `id` = $userid;";

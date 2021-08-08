@@ -1,16 +1,16 @@
 <?php 
-include './partials/db.php';
+include './partials/dbconct.php';
 session_start();
 $alert=false;
 $erroralert=false;
 $table="post";
 if (isset($_POST['thread_submit'])){
-    $title=mysqli_real_escape_string($mysqli,$_POST['title']);
-    $content=mysqli_real_escape_string($mysqli,$_POST['editor']);
+    $title=mysqli_real_escape_string($conn,$_POST['title']);
+    $content=mysqli_real_escape_string($conn,$_POST['editor']);
     $class="CLS345";
     $user_id=$_SESSION['user_id'];
     $date=date('Y-m-d h:i:s');
-    $query=$mysqli->query("INSERT INTO $table VALUES ('','$title','$content','$class','$user_id','$date')");
+    $query=$conn->query("INSERT INTO $table VALUES ('','$title','$content','$class','$user_id','$date')");
     if($query){
         $alert=true;
 
@@ -32,10 +32,10 @@ if (isset($_POST['thread_submit'])){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 
-<link rel="stylesheet" href="./css/forum.css?v=<?php echo time();?>">
+<link rel="stylesheet" href="./css/classroom.css?v=<?php echo time();?>">
 </head>
 <body>
-    <?php include './partials/header.php'?>
+    <?php include './partials/nav.php'?>
     <?php if($alert) {
     
     echo ' <div class="alert alert-success 
@@ -93,16 +93,16 @@ if (isset($_POST['thread_submit'])){
        <div class="container" id="display-thread">
        <?php
         if(isset($_POST['submit']) && !empty($_POST['search'])){
-            $search=mysqli_real_escape_string($mysqli,$_POST['search']);
+            $search=mysqli_real_escape_string($conn,$_POST['search']);
             if($search){
-                $result=$mysqli->query("SELECT * FROM $table where (`title` like ('%$search%') OR `content` like ('%$search%')) AND `class_id`='CLS345'");
+                $result=$conn->query("SELECT * FROM $table where (`title` like ('%$search%') OR `content` like ('%$search%')) AND `class_id`='CLS345'");
                 if(mysqli_num_rows($result)==0){
                     echo "<p class='container' style='padding:0px; margin:30px 0px;'>Looks Like there's not a lot of discussions , <a href='doubt-forum.php'>start your own!</a> </p>";
-                    $result=$mysqli -> query("SELECT * FROM $table WHERE `class_id`='CLS345' ORDER BY `id` DESC ") or die($mysqli->error);
+                    $result=$conn -> query("SELECT * FROM $table WHERE `class_id`='CLS345' ORDER BY `id` DESC ") or die($conn->error);
                     while($data=$result->fetch_assoc()){
                         $id=$data['user_id'];
                         $query2="SELECT `id`,`name` FROM `users` WHERE `id`= '$id'";
-                        $username=$mysqli->query($query2);
+                        $username=$conn->query($query2);
                         $res=$username->fetch_assoc();
                         echo '<div class="container"><p style="margin-bottom:0;color:orangered;font-size:15px;">'.$res['name'].' shared </p>';
                         echo '<p>'.$data['title'].'  </p>';
@@ -114,7 +114,7 @@ if (isset($_POST['thread_submit'])){
                     while($data=$result->fetch_assoc()){
                         $id=$data['user_id'];
                         $query2="SELECT `id`,`name` FROM `users` WHERE `id`= '$id'";
-                        $username=$mysqli->query($query2);
+                        $username=$conn->query($query2);
                         $res=$username->fetch_assoc();
                         echo '<div class="container"><p style="margin-bottom:0;color:orangered;font-size:15px;">'.$res['name'].' shared </p>';
                         echo '<p>'.$data['title'].'  </p>';
@@ -126,11 +126,11 @@ if (isset($_POST['thread_submit'])){
         }
         else{
         $query="SELECT * FROM $table WHERE `class_id`='CLS345' ORDER BY `timestamp` DESC";
-        $result=$mysqli->query($query);
+        $result=$conn->query($query);
         while($data=$result->fetch_assoc()){
         $id=$data['user_id'];
         $query2="SELECT `id`,`name` FROM `users` WHERE `id`= '$id'";
-        $username=$mysqli->query($query2);
+        $username=$conn->query($query2);
         $res=$username->fetch_assoc();
         echo '<div class="container"><p style="margin-bottom:0;color:orangered;font-size:15px;">'.$res['name'].' shared </p>';
         echo '<p>'.$data['title'].'  </p>';
