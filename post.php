@@ -17,7 +17,8 @@ if(!$_GET['id']){
     <title>Post</title>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/css/post.css?v=<?php echo time(); ?>">
+        <link rel="stylesheet" href="./css/doubt_forum.css?v=<?php echo time();?>">
+        <link rel="stylesheet" href="./css/classroom.css?v=<?php echo time();?>">
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -33,13 +34,13 @@ if(!$_GET['id']){
             $query=$conn->query("SELECT * FROM $table WHERE id=$id");
             if(mysqli_num_rows($query)){
                 $data=$query->fetch_assoc();
-                echo "<div><h1>".$data['title']."</h1>";
+                echo "<div class='mt-5'><h1>".$data['title']."</h1>";
                 if(isset($_SESSION['loggedin'])){
                     if(isset($_SESSION['user_id']) && $_SESSION['user_id']==$data['user_id']){
-                      echo '<div><span><button type="button" class="btn btn-danger del " onclick="deletePost('.$id.');">Delete</button></span></div>';
+                      echo '<div><span><button type="button" class="btn btn-danger del mt-2" onclick="deletePost('.$id.');">Delete</button></span></div>';
                     }
                   }
-                echo "<p>".$data['content']."</p></div>";
+                echo "<p class='content'>".$data['content']."</p></div>";
             }
         }
         
@@ -47,7 +48,7 @@ if(!$_GET['id']){
         ?>
     </div>
     <div class="container replies">
-    <form method="POST" id="mainform">
+    <form method="POST" id="mainform" class="reply">
         <textarea  class="form-control" id="reply_content" placeholder="Leave a Reply"></textarea><br>
         <?php  if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
           echo '<a class="btn btn-success" href="login.php" >Login to Reply</a>';

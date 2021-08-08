@@ -53,7 +53,7 @@ if(isset($_POST['feedback'])){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/classroomm.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="search.css">
-
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -99,14 +99,14 @@ if(isset($_POST['feedback'])){
     echo "<div class='body'>
     <div class='left'>
       <div style='padding: 20px; box-shadow:0 2px 10px rgb(0, 0, 0, 0.3);' class='heading'>
-        <h1>$classname</h1>
+       <div class='d-flex justify-content-between'> <h1>$classname</h1><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModalLong'>
+        Give Feedback
+      </button></div>
         <h2>Teacher: <b>$teachername</b></h2>
         <p>Class Code: $classcode</p>
-        <a href='mentor-call.php?id=".$teacher_id."'>Book a 1-1 call</a>";
+        <a href='' class='text-success' onclick='Calendly.initPopupWidget({url:"."`https://calendly.com/yashmalho1999`"."});return false;'>Schedule time with your teacher</a>";
         echo '
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-          Give Feedback
-        </button>
+        
      
         <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -119,12 +119,9 @@ if(isset($_POST['feedback'])){
               </div>
               <div class="modal-body">
                 <form  method="POST">
-                <textarea placeholder="Leave a feedback"  name="feedback-content"class="form-control"></textarea>
-                <button  class="btn btn-secondary" type="submit"name ="feedback">Submit</button>
+                <textarea placeholder="Leave a feedback"  name="feedback-content"class="form-control"></textarea><br>
+                <button  class="btn btn-primary" type="submit"name ="feedback">Submit</button>
                 </form>
-              </div>
-              <div class="modal-footer">
-                
               </div>
             </div>
           </div>
@@ -150,7 +147,14 @@ if(isset($_POST['feedback'])){
         
         <div class="card" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title">'.$title.'</h5>
+          <h5 class="card-title">'.$title.'</h5>';
+          if(strlen($desc)<200){
+           echo' <p class="card-text">'.$desc.'</p>';
+          }
+          else{
+            echo '<p>'.substr($desc,0,200).'<span>'.'.....'.'</span></p>';
+          }
+        echo '
           <p class="card-text">'.$desc.'</p>
           <a style="margin:10px;"href="assignment.php?acode='.$a_id.'" class="btn btn-primary">Submit Assignment</a>';
 
@@ -185,11 +189,11 @@ if(isset($_POST['feedback'])){
     <div class="card-body">
       <h5 class="card-title">Have Doubts?</h5>
       <h6 class="card-subtitle mb-2 text-muted">We have a doubt forum just for you!</h6>
-      <p class="card-text">Discuss with peers and upgrade</p>
+      <p class="card-text">Discuss with peers and upskill yourself</p>
       <a href="doubt-forum.php?id='.$classcode.'" class="card-link">Forum</a>
     </div>
   </div><br>'; ?>
-    <li class='list-group-item active'style="margin-left:10px;" aria-current='true'>Students</li>
+    <li class='list-group-item active'style="margin-left:10px;" aria-current='true'>Members</li>
     <?php 
    
     if($row["students"]==""){
@@ -230,5 +234,6 @@ if(isset($_POST['feedback'])){
             <li class="list-group-item">A second item</li>
           </ul>
       </div> -->
-    
+      <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </body>
+</html>
