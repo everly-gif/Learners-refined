@@ -1,8 +1,16 @@
 <?php 
 session_start();
 include "partials/dbconct.php";
+if(isset($_SESSION["loggedin"])){
+
+}
+else{
+  header("location:login.php");
+}
 $a_code=$_GET["acode"];
+$adminid=$_SESSION["user_id"];
 $sql="SELECT * FROM `assignments` WHERE `a_id`='".$a_code."';";
+
 $result=mysqli_query($conn,$sql);
 $row=mysqli_fetch_assoc($result);
 
