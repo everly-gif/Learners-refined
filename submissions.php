@@ -24,7 +24,7 @@ else{
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="search.css">
+    <link rel="stylesheet" href="css/classroom.css">
     <link rel="stylesheet" href="css/submissions.css">
 
     <!-- jQuery library -->
@@ -41,7 +41,7 @@ else{
   <body>
     <?php include "partials/nav.php"; ?>
       <h3 style="padding: 20px;margin-top:50px;">Submissions for Assignment <?php echo $title; ?></h3>
-      <div class="container">
+      <div class="container short">
       <?php
       if(!$row['submissions']==""){
         $submits=json_decode($row["submissions"],true);
@@ -70,4 +70,5 @@ else{
         ?>
         
       </div>
+      <?php include "partials/footer.php"; ?>
   </body>

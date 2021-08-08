@@ -79,7 +79,7 @@ else{
    
    <h3 class="mt-5 text-center">Add Assignment</h3>
 
-      <div class="ass_form">
+      <div class="ass_form short">
        
           <form action="" method="POST">
               <div id='classform' class='mb-3 '>
@@ -92,5 +92,5 @@ else{
             </form>
 
       </div>
-
+      <?php include './partials/footer.php'?>
 </body>

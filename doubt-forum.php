@@ -160,7 +160,7 @@ if (isset($_POST['thread_submit'])){
 
 
 </div>
-
+<?php include './partials/footer.php'?>
 <script>
   CKEDITOR.replace( 'editor', {
         height: 100

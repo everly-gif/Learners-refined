@@ -45,6 +45,7 @@ if(isset($_POST['submit'])){
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="./css/event.css">
+        <link rel="stylesheet" href="./css/classroom.css">
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -85,7 +86,7 @@ if($alert) {
 
 ?>
 
-<div class="container">
+<div class="container short">
     <form method="POST">
         <h1 class="mb-5">Add a Event </h1>
         <input type="text" class="form-control"placeholder="Event Name" name="event_name"><br>
@@ -95,6 +96,6 @@ if($alert) {
         
     </form>
 </div>
-
+<?php include './partials/footer.php';?>
 </body>
 </html>

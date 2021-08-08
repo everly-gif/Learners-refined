@@ -6,7 +6,7 @@
     </div>
     <ul class="nav navbar-nav navbar-right navbar-expand-sm">
       <li class="active nav-item"><a href="index.php" class="nav-link">Classroom</a></li>
-      <li class="nav-item"><a href="events.php" class="nav-link">Events</a></li>
+      <li class="nav-item active"><a href="events.php" class="nav-link">Events</a></li>
       <?php 
             if(isset($_SESSION["loggedin"])){
               if($_SESSION["teacher"]){

@@ -47,6 +47,7 @@ if(isset($_POST['submit'])){
     <title>Education</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -88,7 +89,7 @@ if(isset($_POST['submit'])){
  
 ?>
 <!-- form -->
-<div class="container">
+<div class="container short">
 <form method="POST">
     <h1>Login</h1>
     <input type="email" class="form-control" placeholder="Enter your email" id="email" name="email"><br>
@@ -98,5 +99,6 @@ if(isset($_POST['submit'])){
     <a href="logout.php">logout</a>
 </form>
 </div>
+<?php include './partials/footer.php';?>
 </body>
 </html>

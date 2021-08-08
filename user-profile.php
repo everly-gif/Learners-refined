@@ -159,6 +159,7 @@ if(isset($_POST['calendly'])){
     ?>
     </div>
     </div>
+    <?php include "partials/footer.php"; ?>
     <script>
     function deleteacc(deleteid){
   var con=confirm("Are you sure? All your data will be deleted");
