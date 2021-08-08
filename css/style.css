@@ -2,7 +2,63 @@
     display: flex;
     width: 80vw;
     flex-wrap: wrap;
+    padding-top:30px;
 }
 .card{
-    margin: 10px;
+    margin: 10px 0px;
+    margin-right:10px;
 }
+.drop .nav-link{
+    color:#2C2E43 !important;
+  }
+  .dropbtn {
+    background-color: #2C2E43;
+    color: #fff;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+    vertical-align: middle;
+    margin-top:-20px;
+    margin-right: 5px;
+    border: none;
+  }
+  
+  
+  
+  
+  
+  .dropdown-content {
+    
+    position: absolute;
+    background-color: #fff;
+    min-width: 135px;
+    z-index: 1;
+    box-shadow: 1px 1px 2px #ddd;
+    display: none;
+  }
+  
+  
+  .dropdown-content a {
+    text-decoration: none;
+    display: block;
+    color: black;
+    padding: 12px 16px;
+    
+    
+  }
+  .dropdown-content .nav-link{
+      margin:0;
+  }
+  .dropdown:hover .dropbtn {
+    background-color: #2C2E43;
+  }
+  
+  .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+  
+  
+  .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  

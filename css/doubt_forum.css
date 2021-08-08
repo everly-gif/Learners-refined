@@ -1,13 +1,14 @@
 .containers{
     padding: 20px;
     box-shadow: 0 2px 10px rgb(0, 0, 0, 0.4);
-    margin: 10px;
+    margin:20px 0px;
 }
-.container form{
+.container form.threadpost{
     padding: 20px;
-    background-color: rgb(236, 236, 236);
+    border: 2px solid rgb(236, 236, 236);
+    border-radius:40px;
 }
-.container form input{
+.container form.threadpost input{
     border: none;
 }
 .containers a{
@@ -22,3 +23,16 @@
     font-weight: bold;
     font-size: 20px;
 }
+.drop .nav-link{
+    color:#2C2E43 !important;
+  }
+  .content img{
+      width:50%;
+      height:50%;
+  }
+  .content{
+      margin:20px;
+  }
+  .reply{
+      margin-top: 20px;
+  }

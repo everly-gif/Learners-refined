@@ -95,7 +95,6 @@ if(isset($_POST['submit'])){
     <input type="password" class="form-control" placeholder="Enter your password" id="password" name="password"><br>
     <button class="btn btn-primary" type="submit"  name="submit">Login</button><br><br>
     <p>Don't have an account ? <a href="sign-up.php">Create an account</a></p>
-    <a href="logout.php">logout</a>
 </form>
 </div>
 </body>

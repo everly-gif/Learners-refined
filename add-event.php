@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
     $author=$_SESSION['username'];
     $date=date('Y-m-d h:i:s');
     
-    $unique=$conn->query("SELECT * FROM $table WHERE `event_name`='$name'");
+    $unique=$conn->query("SELECT * FROM $table WHERE `event_name`='$name' AND `org`='$org'");
     if(mysqli_num_rows($unique)==0){
     $query=$conn->query("INSERT INTO $table VALUES('','$name','$details','$location','$org','$author_id','$author','$date')");
 
@@ -44,7 +44,7 @@ if(isset($_POST['submit'])){
     <title>Add a Event</title>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+        <link rel="stylesheet" href="./css/event.css">
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -66,6 +66,7 @@ if($alert) {
             <span aria-hidden="true">×</span> 
         </button> 
     </div> ';
+    echo '<meta http-equiv="refresh" content="2;url=events.php" />';
     
      
    }
@@ -86,11 +87,11 @@ if($alert) {
 
 <div class="container">
     <form method="POST">
-        <h1>Add a Event </h1>
+        <h1 class="mb-5">Add a Event </h1>
         <input type="text" class="form-control"placeholder="Event Name" name="event_name"><br>
         <textarea class="form-control"  placeholder="Event Details" name="event_details"></textarea><br>
-        <input type="text" class="form-control" placeholder="Location" name="location"><br>
-        <button type="submit" name="submit">Add Event</button>
+        <input type="text" class="form-control" placeholder="Location" name="location"><br><br>
+        <button type="submit" name="submit" class="btn btn-primary">Add Event</button>
         
     </form>
 </div>

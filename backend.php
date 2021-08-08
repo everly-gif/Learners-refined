@@ -11,9 +11,9 @@ if(isset($_POST['displayreply']) && isset ($_POST['post_id'])){
         echo "<h3 style='margin-top:40px;margin-bottom:30px;'>Comments</h3>";
     while($data=$display->fetch_assoc())
     {   
-        echo "<div style='margin-right:10px;box-shadow:0 2px 10px rgb(0, 0, 0, 0.4);padding:10px; margin:12px;' class=' reply'  >
+        echo "<div style='margin-right:10px;box-shadow:0 2px 10px rgb(0, 0, 0, 0.4);padding:20px; margin:12px;' class=' reply'  >
         <div  class=' d-flex '>
-         <div><b>". $data['comment_author']."</b> "."says </div> <div><br>".$data['date']."</div>
+         <div><b>". $data['comment_author'] ."</b> "."says </div> <div class='mx-2'> ". $data['date']."</div>
         </div><br>
         <div >
           <p >". stripslashes($data['comment'])." </p>

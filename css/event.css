@@ -1,16 +1,22 @@
-.dropbtn {
+.drop .nav-link{
+    color:#2C2E43 !important;
+  }
+  .dropbtn {
     background-color: #2C2E43;
     color: #fff;
     padding: 12px;
     font-size: 16px;
     border-radius: 10px;
     vertical-align: middle;
-    margin-top:-15px;
+    margin-top:-20px;
+    margin-right: 5px;
     border: none;
   }
   
   
-  
+  .container{
+      padding-top:30px;
+  }
   
   
   .dropdown-content {
@@ -47,4 +53,3 @@
   .dropdown:hover .dropdown-content {
       display: block;
     }
-  

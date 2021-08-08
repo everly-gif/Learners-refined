@@ -1,13 +1,17 @@
 <?php 
 include './partials/dbconct.php';
 session_start();
+if(!$_GET['id']){
+    header('location:index.php');
+}
 $alert=false;
 $erroralert=false;
+$class=$_GET['id'];
 $table="post";
 if (isset($_POST['thread_submit'])){
     $title=mysqli_real_escape_string($conn,$_POST['title']);
     $content=mysqli_real_escape_string($conn,$_POST['editor']);
-    $class="CLS345";
+    
     $user_id=$_SESSION['user_id'];
     $date=date('Y-m-d h:i:s');
     $query=$conn->query("INSERT INTO $table VALUES ('','$title','$content','$class','$user_id','$date')");
@@ -64,24 +68,25 @@ if (isset($_POST['thread_submit'])){
 
 ?>
     <div class="container">
+    <h3 class="m-3 mt-5">Welcome to your class's forum!</h3>
     <div class="container search-bar">
     <form style="margin-top:30px; " method="POST" class="d-flex">
-        <input type="search" name="search" id="search" class="form-control" placeholder="Search discussions" aria-label="Search">
-        <button class="btn btn-success search"  type="submit" name="submit" >Search</button>
+        <input type="search" name="search" id="search" class="form-control mt-3 mb-3" placeholder="Search discussions" aria-label="Search">
+        <button class="btn btn-primary search mt-3 mb-3"  type="submit" name="submit" >Search</button>
        
     </form>
 </div>
 <br>
    <div class="container">
     <?php if(!isset($_POST['submit'])):?>
-    <form method="POST" id="mainform">
+    <form method="POST" id="mainform" class="threadpost">
         <input type="text" placeholder="title" id="title" class="form-control"name="title" required><br>
         <textarea   id="editor" name="editor"  required></textarea><br>
         <?php  if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
-          echo '<a class="btn btn-success" href="login.php" >Login to Continue</a>';
+          echo '<a class="btn btn-primary" href="login.php" >Login to Continue</a>';
         }
         else{
-          echo '<button class="btn btn-success" type="submit" name="thread_submit"  >Post thread</button>';
+          echo '<button class="btn btn-primary" type="submit" name="thread_submit"  >Post thread</button>';
         }
         ?>
     </form>
@@ -90,16 +95,16 @@ if (isset($_POST['thread_submit'])){
 
    <div class="container recent-posts">
        <br>
-       <h1>Recently added</h1>
+       
        <div class="container" id="display-thread">
        <?php
         if(isset($_POST['submit']) && !empty($_POST['search'])){
             $search=mysqli_real_escape_string($conn,$_POST['search']);
             if($search){
-                $result=$conn->query("SELECT * FROM $table where (`title` like ('%$search%') OR `content` like ('%$search%')) AND `class_id`='CLS345'");
+                $result=$conn->query("SELECT * FROM $table where (`title` like ('%$search%') OR `content` like ('%$search%')) AND `class_id`='$class'");
                 if(mysqli_num_rows($result)==0){
-                    echo "<p class='container' style='padding:0px; margin:30px 0px;'>Looks Like there's not a lot of discussions , <a href='doubt-forum.php'>start your own!</a> </p>";
-                    $result=$conn -> query("SELECT * FROM $table WHERE `class_id`='CLS345' ORDER BY `id` DESC ") or die($conn->error);
+                    echo "<h2 class='container' style='padding:0px; margin:30px 0px;'>Looks Like there's not a lot of discussions , <a href='doubt-forum.php'>start your own!</a> </h2>";
+                    $result=$conn -> query("SELECT * FROM $table WHERE `class_id`='$class' ORDER BY `id` DESC ") or die($conn->error);
                     while($data=$result->fetch_assoc()){
                         $id=$data['user_id'];
                         $query2="SELECT `id`,`name` FROM `users` WHERE `id`= '$id'";
@@ -126,9 +131,11 @@ if (isset($_POST['thread_submit'])){
             
         }
         else{
-        $query="SELECT * FROM $table WHERE `class_id`='CLS345' ORDER BY `timestamp` DESC";
+        $query="SELECT * FROM $table WHERE `class_id`='$class' ORDER BY `timestamp` DESC";
         $result=$conn->query($query);
+        if(mysqli_num_rows($result)){
         while($data=$result->fetch_assoc()){
+        echo '<h2 class="container">Recently added</h2>';
         $id=$data['user_id'];
         $query2="SELECT `id`,`name` FROM `users` WHERE `id`= '$id'";
         $username=$conn->query($query2);
@@ -142,6 +149,9 @@ if (isset($_POST['thread_submit'])){
         echo '<p>'.substr($data['content'],0,200).'<span>'.'.....'.'</span></p>'.'<a href="post.php?id='.$data['id'].'">Help Out</a></div>';
         }
         }
+    }else{
+        echo '<h2 class="container">No Recent Discussions</h2>';
+    }
     }
 
 ?>

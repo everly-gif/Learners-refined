@@ -43,7 +43,7 @@ if($_SERVER['REQUEST_METHOD']="GET"){
     <?php 
     
     if($found){
-      echo "<div class='card' style='width: 18rem; margin:50px'>
+      echo "<div class='card' style='width: 30rem; margin:50px'>
     <img src='https://source.unsplash.com/1600x900/?classroom,study' class='card-img-top' alt='...'>
     <div class='card-body'>
       <h5 class='card-title'>$classname</h5>
