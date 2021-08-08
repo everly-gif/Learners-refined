@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
     $author=$_SESSION['username'];
     $date=date('Y-m-d h:i:s');
     
-    $unique=$conn->query("SELECT * FROM $table WHERE `event_name`='$name'");
+    $unique=$conn->query("SELECT * FROM $table WHERE `event_name`='$name' AND `org`='$org'");
     if(mysqli_num_rows($unique)==0){
     $query=$conn->query("INSERT INTO $table VALUES('','$name','$details','$location','$org','$author_id','$author','$date')");
 
@@ -66,6 +66,7 @@ if($alert) {
             <span aria-hidden="true">×</span> 
         </button> 
     </div> ';
+    echo '<meta http-equiv="refresh" content="2;url=events.php" />';
     
      
    }

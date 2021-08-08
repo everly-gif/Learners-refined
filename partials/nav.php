@@ -11,23 +11,10 @@
             <a class="nav-link active" aria-current="page" href="index.php">Classroom</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link active" aria-current="page" href="events.php">Events</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="call.php">Call</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="events.php" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Events
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Hackathon</a></li>
-              <li><a class="dropdown-item" href="#">Fest</a></li>
-              <li><a class="dropdown-item" href="#">Club Rrecuitment</a></li>
-            </ul>
-          </li>
+     </ul>
           
-        </ul>
         <div class="navbar-right navbar-expand">
           <form action="search.php" method="GET" class="d-flex navbar-expand-sm">
             <input class="form-control me-2" type="search" name="code" placeholder="Class Code" aria-label="Search">
