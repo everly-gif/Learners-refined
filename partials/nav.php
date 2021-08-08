@@ -24,13 +24,13 @@
               if(!$_SESSION['teacher']){
               
               echo '<li class="nav-item drop"> <div class="dropdown" ><button class="dropbtn notranslate">'.$_SESSION['username'].'▼</button>
-              <div class="dropdown-content"><a class="nav-link" href="user-profile.php?id='.$_SESSION['user_id'].'">Profile</a><a class="nav-link" href="start-post.php">To-dos</a><a class="nav-link" href="logout.php">Logout</a></div>
+              <div class="dropdown-content"><a class="nav-link" href="user-profile.php?id='.$_SESSION['user_id'].'">Profile</a><a class="nav-link" href="logout.php">Logout</a></div>
               </div></li>';
               }
               else{
 
                 echo '<li class="nav-item drop"> <div class="dropdown" ><button class="dropbtn notranslate">'.$_SESSION['username'].'▼</button>
-                <div class="dropdown-content"><a class="nav-link" href="user-prolfile.php?id='.$_SESSION['user_id'].'">Profile</a><a class="nav-link" href="start-post.php">Add Calendly Link</a><a class="nav-link" href="start-post.php">Feedback</a><a class="nav-link" href="logout.php">Logout</a></div>
+                <div class="dropdown-content"><a class="nav-link" href="user-profile.php?id='.$_SESSION['user_id'].'">Profile</a><a class="nav-link" href="feedback.php">Feedback</a><a class="nav-link" href="logout.php">Logout</a></div>
                 </div></li>';
 
               }
