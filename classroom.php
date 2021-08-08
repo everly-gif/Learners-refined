@@ -1,15 +1,29 @@
 <?php 
 session_start();
 include "partials/dbconct.php";
-$found=false;
-$code=$_GET["code"];
-$sql="SELECT * FROM `classroom` WHERE c_code='$code';";
-$result=mysqli_query($conn,$sql);
-if($row=mysqli_fetch_assoc($result)){
-  $teachername=$row['admin'];
-  $classcode=$row['c_code'];
-  $classname=$row['c_name'];
-  $found=true;
+if(isset($_SESSION["loggedin"])){
+  $user_id=$_SESSION["user_id"];
+  $teacher=false;
+  $found=false;
+  $code=$_GET["code"];
+  $sql="SELECT * FROM `classroom` WHERE c_code='$code';";
+  $result=mysqli_query($conn,$sql);
+  if($row=mysqli_fetch_assoc($result)){
+    $teachername=$row['admin'];
+    $classcode=$row['c_code'];
+    $classname=$row['c_name'];
+    $found=true;
+  }
+  $teachersql='SELECT * FROM `users` WHERE `id`='.$user_id.';';
+  $tearesult=mysqli_query($conn,$teachersql);
+  $tearow=mysqli_fetch_assoc($tearesult);
+  if($tearow["role"]==0){
+    $teacher=true;
+    $_SESSION["teacher"]=true;
+  }
+}
+else{
+  header("location:login.php");
 }
 ?>
 <head>
@@ -35,17 +49,54 @@ if($row=mysqli_fetch_assoc($result)){
   </head>
   <body>
   <?php include "partials/nav.php"; ?>
+  
   <?php 
   if($found){
+    
     echo "<div class='body'>
     <div class='left'>
       <div style='padding: 20px; box-shadow:0 2px 10px rgb(0, 0, 0, 0.3);' class='heading'>
         <h1>$classname</h1>
         <h2>Teacher: <b>$teachername</b></h2>
         <p>Class Code: $classcode</p>
+      </div>";
+
+      if($teacher){
+        echo "<div class='assign'>
+        <a href='addassignment.php?code=".$classcode."'>+</a>
+        <p> Add Assignment</p>
+        </div>
+        ";
+      }
+      echo "<div class='assignments'>";
+      $classsql='SELECT * FROM `assignments` WHERE `c_id`="'.$classcode.'";';
+      $classresult=mysqli_query($conn,$classsql);
+      while($classrow=mysqli_fetch_assoc($classresult)){
+        $title=$classrow['title'];
+        $desc=$classrow['description'];
+        $a_id=$classrow['a_id'];
+        echo '
+        
+        <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">'.$title.'</h5>
+          <p class="card-text">'.$desc.'</p>
+          <a style="margin:10px;"href="assignment.php?acode='.$a_id.'" class="btn btn-primary">Submit Assignment</a>';
+
+
+          if($teacher){echo '<a style="margin:10px;" href="submissions.php?acode='.$a_id.'" class="btn btn-primary">Check Submissions</a>';
+          }
+          echo'
+        </div>
       </div>
-    </div>";
+        ';
+
+      }
+      echo "
+      </div>
+      </div>";
   }
+
     else{
       echo "<div class='body'>
       <div class='left'>
@@ -54,6 +105,7 @@ if($row=mysqli_fetch_assoc($result)){
         </div>
       </div>";
     }
+    
 
   
     ?>
@@ -99,5 +151,4 @@ if($row=mysqli_fetch_assoc($result)){
           </ul>
       </div> -->
     
-
 </body>
