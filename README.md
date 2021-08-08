@@ -1,4 +1,4 @@
-# Learners-refined
+# Learner's Refined
 Making student's lives easier.<br>
 Built at HackACode for education theme
 
@@ -29,7 +29,7 @@ Specified events tab , to keep in track of extra-curricular activities.
 Bootstrap4 CSS3 AJAX Jqeury PHP MySQL CKediotr4
 
 # Demo Video
-<iframe src="https://drive.google.com/file/d/1U3IEL4JTWD-VF0sBtWTwT8cUkzmHRGjY/preview" width="640" height="480" allow="autoplay"></iframe>
+https://drive.google.com/file/d/1U3IEL4JTWD-VF0sBtWTwT8cUkzmHRGjY/view?usp=sharing
 
 # Team Hack it
 Rajmun Khan
