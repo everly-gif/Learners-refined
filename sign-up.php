@@ -36,7 +36,7 @@ if(isset($_POST['submit'])){
     <title>Signup</title>
      <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="css/signup.css">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -87,7 +87,7 @@ if($alert) {
     <input type="text" class="form-control" placeholder="Enter your College/School Name" id="univ" name="univ"><br>
     <input type="radio"  id="teacher" name="role" value="0">Teacher<br>
     <input type="radio"  id="student" name="role" value="1">Student<br><br>
-    <button type="submit"  name="submit">Sign Up</button><br><br>
+    <button style="color:white; background-color:green;padding:5px 10px;" type="submit"  name="submit">Sign Up</button><br><br>
     <p>Already have an account ? <a href="login.php">login</a></p>
 </form>
 </div>

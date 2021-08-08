@@ -47,7 +47,7 @@ if(isset($_POST['submit'])){
     <title>Education</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="css/login.css">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -95,7 +95,6 @@ if(isset($_POST['submit'])){
     <input type="password" class="form-control" placeholder="Enter your password" id="password" name="password"><br>
     <button class="btn btn-primary" type="submit"  name="submit">Login</button><br><br>
     <p>Don't have an account ? <a href="sign-up.php">Create an account</a></p>
-    <a href="logout.php">logout</a>
 </form>
 </div>
 </body>
