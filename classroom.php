@@ -20,6 +20,7 @@ if(isset($_SESSION["loggedin"])){
   $teachersql='SELECT * FROM `users` WHERE `id`='.$user_id.';';
   $tearesult=mysqli_query($conn,$teachersql);
   $tearow=mysqli_fetch_assoc($tearesult);
+  $calendly_link=$tearow['calendly_link'];
   if($tearow["role"]==0){
     $teacher=true;
     $_SESSION["teacher"]=true;
@@ -103,8 +104,8 @@ if(isset($_POST['feedback'])){
         Give Feedback
       </button></div>
         <h2>Teacher: <b>$teachername</b></h2>
-        <p>Class Code: $classcode</p>
-        <a href='' class='text-success' onclick='Calendly.initPopupWidget({url:"."`https://calendly.com/yashmalho1999`"."});return false;'>Schedule time with your teacher</a>";
+        <p>Class Code: $classcode</p><p>
+        ".$calendly_link."</p>";
         echo '
         
      
