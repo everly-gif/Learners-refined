@@ -40,7 +40,7 @@ else{
   </head>
   <body>
     <?php include "partials/nav.php"; ?>
-      <h1 style="padding: 20px;">Submissions for Assignmt <?php echo $title; ?></h1>
+      <h3 style="padding: 20px;margin-top:50px;">Submissions for Assignment <?php echo $title; ?></h3>
       <div class="container">
       <?php
       if(!$row['submissions']==""){

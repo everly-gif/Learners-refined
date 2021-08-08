@@ -43,7 +43,7 @@ include './partials/nav.php';
 
 
 ?>
-<h1 class="text-center">Book a call, details will be sent over mail</h1><div class="calendly-inline-widget" data-url="https://calendly.com/yashmalho1999" style="min-width:100vw;height:100vh;position:fixed;"></div>
+<h3 class="text-center mt-5">Book a call with your teachers now!</h3><div class="calendly-inline-widget" data-url="https://calendly.com/yashmalho1999" style="min-width:100vw;height:100vh;position:fixed;"></div>
 <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
 </html>

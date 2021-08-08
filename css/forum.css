@@ -48,3 +48,6 @@ input[type="search"]{
     border-color:#2C2E43 !important;
     outline:none !important;
 }
+.drop .nav-link{
+    color:#2C2E43 !important;
+  }

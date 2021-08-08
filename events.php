@@ -22,7 +22,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     <title>Events</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="./css/event.css">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -39,12 +39,14 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     ?>
     <div class="main container">
         <h1>Events</h1>
+        <small class="text-danger">Are you hosting an event? Add your event<a href="add-event.php"> here</a></small>
         <div class="search-bar">
     <form style="margin-top:30px; "  class="d-flex">
         <input type="search" name="search" id="search" class="form-control" placeholder="Search events" aria-label="Search">
         
-       
+      
     </form>
+   
 </div><br>
         <div class="card-columns" id="results">
         <?php
@@ -64,7 +66,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
                     echo '<p class="card-text">'.substr($data['event_details'],0,200).'<span>'.'.....'.'</span></p>'.'<button class="btn btn-primary" data-toggle="modal" data-target="#Modal"  id='.$data['event_id']. ' onclick="view(this.id)">Read more</button>';
                     }
                   echo '
-                   <p  class="text-danger">'.$data['location'].'</p>';
+                   <p  class="text-primary">'.$data['location'].'</p>';
                    if(isset($_SESSION['loggedin'])){
                     if(isset($_SESSION['user_id']) && $_SESSION['user_id']==$data['author_id']){
                       echo '<div><span><button type="button" class="btn btn-danger del " onclick="deleteEvent('.$data['event_id'].');">Delete</button></span></div>';

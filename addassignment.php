@@ -4,6 +4,8 @@
 session_start();
 include "partials/dbconct.php";
 $classcode=$_GET["code"];
+$alert=false;
+$erroralert=false;
 if($_SESSION["teacher"]=true){
   if(isset($_POST["submit"])){
     $title=$_POST["title"];
@@ -12,8 +14,10 @@ if($_SESSION["teacher"]=true){
     $sql="INSERT INTO `assignments` (`title`, `description`,`c_id`, `a_id`) VALUES ('$title', '$desc', '$classcode', '$a_id');";
     $result=mysqli_query($conn,$sql);
     if($result){
-      echo "done";
+      $alert="Assignment Posted Successfully";
       mkdir("assignment/$a_id");
+    }else{
+      $erroralert="Something went wrong";
     }
   }
 }
@@ -44,8 +48,39 @@ else{
     <title>Assignment</title>
   </head>
   <body>
-    <?php include "partials/nav.php"; ?>
+    <?php include "partials/nav.php"; 
+    
+    if($alert) {
+    
+      echo ' <div class="alert alert-success 
+          alert-dismissible fade show" role="alert" style="margin-bottom:0px;;border-radius:0px;">
+          <strong>Success!</strong>'.$alert.' 
+          <button type="button" class="close"
+              data-dismiss="alert" aria-label="Close"> 
+              <span aria-hidden="true">×</span> 
+          </button> 
+      </div> ';
+     
+       
+     }
+     if($erroralert) {
+      
+      echo ' <div class="alert alert-danger 
+          alert-dismissible fade show" role="alert" style="margin-bottom:0px;border-radius:0px;"> 
+         <strong>Error!</strong> '. $erroralert.'<button type="button" class="close" 
+         data-dismiss="alert" aria-label="Close">
+         <span aria-hidden="true">×</span> 
+         </button> 
+          </div> '; 
+     }
+  
+    
+    ?>
+   
+   <h3 class="mt-5 text-center">Add Assignment</h3>
+
       <div class="ass_form">
+       
           <form action="" method="POST">
               <div id='classform' class='mb-3 '>
                 <label class='form-label'>Title</label>
