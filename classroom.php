@@ -181,10 +181,19 @@ if(isset($_POST['feedback'])){
   
     ?>
     <ul class='list-group right'>
-    <li class='list-group-item active' aria-current='true'>Sudents</li>
+    <?php echo '<div class="card" style="width: 18rem;margin-left:10px;">
+    <div class="card-body">
+      <h5 class="card-title">Have Doubts?</h5>
+      <h6 class="card-subtitle mb-2 text-muted">We have a doubt forum just for you!</h6>
+      <p class="card-text">Discuss with peers and upgrade</p>
+      <a href="doubt-forum.php?id='.$classcode.'" class="card-link">Forum</a>
+    </div>
+  </div><br>'; ?>
+    <li class='list-group-item active'style="margin-left:10px;" aria-current='true'>Students</li>
     <?php 
+   
     if($row["students"]==""){
-      echo "<li class='list-group-item'>No students Yet!</li>";
+      echo "<li class='list-group-item' style='margin-left:10px;'>No students Yet!</li>";
     }
     else{
       $studentsArr=json_decode($row['students'],true);
@@ -197,7 +206,7 @@ if(isset($_POST['feedback'])){
         $searchresult=mysqli_query($conn,$search);
         $row=mysqli_fetch_assoc($searchresult);
         $studentName=$row['name'];
-        echo "<li class='list-group-item'>$studentName</li>";
+        echo "<li class='list-group-item'style='margin-left:10px;'>$studentName</li>";
       }
     }
   

@@ -41,7 +41,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
         <h1>Events</h1>
         <div class="search-bar">
     <form style="margin-top:30px; "  class="d-flex">
-        <input type="search" name="search" id="search" class="form-control" placeholder="Search discussions" aria-label="Search">
+        <input type="search" name="search" id="search" class="form-control" placeholder="Search events" aria-label="Search">
         
        
     </form>
@@ -50,7 +50,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
         <?php
          if(isset($_SESSION['univ']) || $_SESSION['univ']==true)
          $univ=$_SESSION['univ'];
-         $query=$conn->query("SELECT * FROM $table WHERE `org`='$univ'");
+         $query=$conn->query("SELECT * FROM $table WHERE `org`='$univ' ORDER BY `event_id` DESC");
 
          if(mysqli_num_rows($query)){
              while($data=$query->fetch_assoc()){
@@ -74,6 +74,8 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
                 echo' </div>
                </div>';
              }
+         }else{
+             echo 'No events listed';
          }
         ?>
         </div>
