@@ -3,6 +3,7 @@ session_start();
 $alert=false;
 $erroralert=false;
 include "partials/dbconct.php";
+
 if(isset($_SESSION["loggedin"])){
   $user_id=$_SESSION["user_id"];
   $teacher=false;
