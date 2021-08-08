@@ -30,7 +30,7 @@ if( !$_SESSION['loggedin'] && $_SESSION['role']!=0){
 </head>
 <body>
     <?php include './partials/nav.php';?>
-    <div class="container pt-5">
+    <div class="container feedback pt-5">
     <h3>Here's your student's feedbacks</h3>
     <table class="table mt-5">
   <thead class='bg-primary' style="color:white;">
@@ -63,5 +63,6 @@ if( !$_SESSION['loggedin'] && $_SESSION['role']!=0){
   </tbody>
 </table>
     </div>
+    <?php include './partials/footer.php';?>
 </body>
 </html>
