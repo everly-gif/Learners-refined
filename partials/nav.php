@@ -2,7 +2,7 @@
 <nav class="navbar navbar-default navbar-expand-sm navbar-dark bg-dark">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
+      <a class="navbar-brand" href="#">Learner's Refined</a>
     </div>
     <ul class="nav navbar-nav navbar-right navbar-expand-sm">
       <li class="active nav-item"><a href="index.php" class="nav-link">Classroom</a></li>
@@ -19,7 +19,7 @@
     <form class="form-inline my-2 my-lg-0"  action="search.php" method="GET">
     <?php  if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
             echo '
-            <li class="nav-item"><a href="login.php" class="nav-link">Login</a></li>';}
+            <a href="login.php" class="nav-link">Login</a>';}
             else{
               if(!$_SESSION['teacher']){
               
