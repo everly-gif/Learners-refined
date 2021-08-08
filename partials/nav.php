@@ -13,8 +13,8 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="events.php">Events</a>
           </li>
+     </ul>
           
-        </ul>
         <div class="navbar-right navbar-expand">
           <form action="search.php" method="GET" class="d-flex navbar-expand-sm">
             <input class="form-control me-2" type="search" name="code" placeholder="Class Code" aria-label="Search">
