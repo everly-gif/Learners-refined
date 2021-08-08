@@ -60,6 +60,7 @@ if(isset($_POST['submit'])){
   
 }
 ?>
+<html>
 <head>
     
     <meta charset="utf-8">
@@ -84,7 +85,7 @@ if(isset($_POST['submit'])){
   </head>
   <body>
     <?php include "partials/nav.php"; ?>
-      <div class="container">
+      <div class="container ">
           <div class="assignment">
               <h1><?php echo $row['title']; ?></h1>
               <p><?php echo $row['description']; ?></p>
@@ -96,3 +97,5 @@ if(isset($_POST['submit'])){
 
       </div>
     </body>
+    <?php include './partials/footer.php'?>
+    </html>

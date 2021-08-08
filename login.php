@@ -88,7 +88,7 @@ if(isset($_POST['submit'])){
  
 ?>
 <!-- form -->
-<div class="container">
+<div class="container short">
 <form method="POST">
     <h1>Login</h1>
     <input type="email" class="form-control" placeholder="Enter your email" id="email" name="email"><br>
@@ -97,5 +97,6 @@ if(isset($_POST['submit'])){
     <p>Don't have an account ? <a href="sign-up.php">Create an account</a></p>
 </form>
 </div>
+<?php include './partials/footer.php';?>
 </body>
 </html>

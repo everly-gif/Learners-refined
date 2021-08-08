@@ -90,7 +90,9 @@ if($alert) {
     <button style="color:white; background-color:green;padding:5px 10px;" type="submit"  name="submit">Sign Up</button><br><br>
     <p>Already have an account ? <a href="login.php">login</a></p>
 </form>
+
 </div>
+<?php include "partials/footer.php"; ?>
 <script>
     // var search=document.getElementById(univ);
     // search.addEventListener('keyup',function(e){
@@ -103,5 +105,6 @@ if($alert) {
     //     })
     // };
 </script>
+
 </body>
 </html>

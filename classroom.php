@@ -45,6 +45,7 @@ if(isset($_POST['feedback'])){
   }
 }
 ?>
+<html>
 <head>
     
     <meta charset="utf-8">
@@ -156,7 +157,7 @@ if(isset($_POST['feedback'])){
             echo '<p>'.substr($desc,0,200).'<span>'.'.....'.'</span></p>';
           }
         echo '
-          <p class="card-text">'.$desc.'</p>
+
           <a style="margin:10px;"href="assignment.php?acode='.$a_id.'" class="btn btn-primary">Submit Assignment</a>';
 
 
@@ -235,6 +236,8 @@ if(isset($_POST['feedback'])){
             <li class="list-group-item">A second item</li>
           </ul>
       </div> -->
+      <?php include './partials/footer.php'?>
       <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+      
 </body>
 </html>

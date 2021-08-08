@@ -23,6 +23,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/event.css">
+    
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -37,7 +38,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     <?php
     include './partials/nav.php';
     ?>
-    <div class="main container">
+    <div class="main container short">
         <h1>Events</h1>
         <small class="text-danger">Are you hosting an event? Add your event<a href="add-event.php"> here</a></small>
         <div class="search-bar">
@@ -99,7 +100,8 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     </div>
   </div>
 </div>
-    </div>
+</div>
+<?php include './partials/footer.php'?>
 <script>
     function view(id){
        console.log(id);

@@ -27,7 +27,7 @@ if(!$_GET['id']){
 </head>
 <body>
     <?php include './partials/nav.php';?>
-    <div class="container">
+    <div class="container short">
         <?php
         if(isset($_GET['id']) && $_GET['id']>0){
             $id=mysqli_real_escape_string($conn,$_GET['id']);
@@ -60,6 +60,7 @@ if(!$_GET['id']){
     </form>
     <div id="display-reply"></div>
     </div>
+    <?php include './partials/footer.php';?>
     <script>
     $(document).ready(function(){
     displayReplies();

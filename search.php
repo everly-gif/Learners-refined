@@ -40,6 +40,7 @@ if($_SERVER['REQUEST_METHOD']="GET"){
   </head>
   <body>
     <?php include "partials/nav.php"; ?>
+    <div class="short">
     <?php 
     
     if($found){
@@ -61,4 +62,6 @@ if($_SERVER['REQUEST_METHOD']="GET"){
     ?>
 
   </div>
+  </div>
+  <?php include "partials/footer.php"; ?>
   </body>
