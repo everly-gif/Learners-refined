@@ -8,9 +8,8 @@
     echo "inside";
     $c_id= 'clw'.rand(10,1000).'';
     $c_name=$_POST["c_name"];
-    $admin="deebansir";
-    $admin_id="RA15224";
-    $sql="INSERT INTO `classroom` (`admin`, `c_code`, `students`, `assignment`, `announcement`, `c_name`, `admin_id`) VALUES ('deebansir ji', '$c_id', '', '', '', '$c_name', '$admin_id');";
+    $admin=$_SESSION['username'];
+    $sql="INSERT INTO `classroom` (`admin`, `c_code`, `students`, `assignment`, `announcement`, `c_name`, `admin_id`) VALUES ('$admin', '$c_id', '', '', '', '$c_name', '$admin_id');";
     $result=mysqli_query($conn,$sql);
     if($result){
       echo"success";

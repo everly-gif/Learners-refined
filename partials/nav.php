@@ -8,7 +8,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Classroom</a>
+            <a class="nav-link active" aria-current="page" href="index.php">Classroom</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
@@ -32,7 +32,15 @@
           <form action="search.php" method="GET" class="d-flex navbar-expand-sm">
             <input class="form-control me-2" type="search" name="code" placeholder="Class Code" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
-            <a style="margin:0 10px" class="btn btn-outline-success" href="login.php">Login</a>
+            <?php 
+            if(isset($_SESSION["loggedin"])){
+              echo '<a style="margin:0 10px" class="btn btn-outline-success" href="logout.php">Logout</a>';
+            }
+            else{
+              echo'<a style="margin:0 10px" class="btn btn-outline-success" href="login.php">Login</a>';
+            }
+            ?>
+            
             
           </form>
 

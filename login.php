@@ -18,6 +18,9 @@ if(isset($_POST['submit'])){
             $_SESSION['email']=$email;
             $_SESSION['username']=$data['name'];
             $_SESSION['user_id'] = $data['id'];
+            if($_SESSION["role"]==0){
+                $_SESSION["teacher"]=true;
+            }
             $_SESSION['univ']=$data['org'];
             $_SESSION['role']=$data['role'];
             $alert=true;

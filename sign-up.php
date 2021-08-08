@@ -13,7 +13,7 @@ if(isset($_POST['submit'])){
     $hash = password_hash($password, PASSWORD_DEFAULT);
     $unique=$conn->query("SELECT `email` FROM $table WHERE `email`='$email' ");
     if(mysqli_num_rows($unique)==0){
-        $query=$conn->query("INSERT INTO $table VALUES('','$name','$email','$hash','$role','$univ')");
+        $query=$conn->query("INSERT INTO $table VALUES('','$name','$email','$hash','$role','')");
         if($query){
             $alert=true;
         }
