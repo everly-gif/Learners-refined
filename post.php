@@ -1,6 +1,6 @@
 <?php
 session_start();
-include './partials/db.php';
+include './partials/dbconct.php';
 $table="post";
 if(!$_GET['id']){
   header('Location:doubt-forum.php');
@@ -17,6 +17,7 @@ if(!$_GET['id']){
     <title>Post</title>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/post.css?v=<?php echo time(); ?>">
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -24,12 +25,12 @@ if(!$_GET['id']){
         
 </head>
 <body>
-    <?php include './partials/header.php';?>
+    <?php include './partials/nav.php';?>
     <div class="container">
         <?php
         if(isset($_GET['id']) && $_GET['id']>0){
-            $id=mysqli_real_escape_string($mysqli,$_GET['id']);
-            $query=$mysqli->query("SELECT * FROM $table WHERE id=$id");
+            $id=mysqli_real_escape_string($conn,$_GET['id']);
+            $query=$conn->query("SELECT * FROM $table WHERE id=$id");
             if(mysqli_num_rows($query)){
                 $data=$query->fetch_assoc();
                 echo "<div><h1>".$data['title']."</h1>";

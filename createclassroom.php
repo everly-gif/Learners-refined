@@ -1,24 +1,30 @@
 <!doctype html>
 <html lang="en">
   <?php 
-  include "partials/dbconct.php";
   session_start();
-  if(isset($_POST['submit']) && $_SESSION["loggedin"]==true){
-    $admin_id=$_SESSION['user_id'];
-    echo "inside";
-    $c_id= 'clw'.rand(10,1000).'';
-    $c_name=$_POST["c_name"];
-    $admin=$_SESSION['username'];
-    $sql="INSERT INTO `classroom` (`admin`, `c_code`, `students`, `assignment`, `announcement`, `c_name`, `admin_id`) VALUES ('$admin', '$c_id', '', '', '', '$c_name', '$admin_id');";
-    $result=mysqli_query($conn,$sql);
-    if($result){
-      echo"success";
-      header('location:classroom.php?code='.$c_id.'');
-    }
-    else{
-      echo"failed";
+  if(isset($_SESSION["loggedin"]) && $_SESSION["teacher"]==true){
+    include "partials/dbconct.php";
+    if(isset($_POST['submit'])){
+      $admin_id=$_SESSION['user_id'];
+      echo "inside";
+      $c_id= 'clw'.rand(10,1000).'';
+      $c_name=$_POST["c_name"];
+      $admin=$_SESSION['username'];
+      $sql="INSERT INTO `classroom` (`admin`, `c_code`, `students`, `assignment`, `announcement`, `c_name`, `admin_id`) VALUES ('$admin', '$c_id', '', '', '', '$c_name', '$admin_id');";
+      $result=mysqli_query($conn,$sql);
+      if($result){
+        echo"success";
+        header('location:classroom.php?code='.$c_id.'');
+      }
+      else{
+        echo"failed";
+      }
     }
   }
+  else{
+    header("location:login.php");
+  }
+  
   ?>
   <head>
     

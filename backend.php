@@ -1,19 +1,19 @@
 <?php
-include './partials/db.php';
+include './partials/dbconct.php';
 session_start();
 
 $table="comments";
 
 if(isset($_POST['displayreply']) && isset ($_POST['post_id'])){
-    $post_id= $mysqli -> real_escape_string($_POST['post_id']);
-    $display=$mysqli->query("SELECT * FROM $table WHERE `post_id` = '$post_id'  ORDER BY `id` DESC ");
+    $post_id= $conn -> real_escape_string($_POST['post_id']);
+    $display=$conn->query("SELECT * FROM $table WHERE `post_id` = '$post_id'  ORDER BY `id` DESC ");
     if(mysqli_num_rows($display)>0){
         echo "<h3 style='margin-top:40px;margin-bottom:30px;'>Comments</h3>";
     while($data=$display->fetch_assoc())
     {   
-        echo "<div class=' reply'  >
-        <div class=' d-flex '>
-         <div style='margin-right:10px;'>". $data['comment_author']." "."says </div> <div>".  $data['date']."</div>
+        echo "<div style='margin-right:10px;box-shadow:0 2px 10px rgb(0, 0, 0, 0.4);padding:10px; margin:12px;' class=' reply'  >
+        <div  class=' d-flex '>
+         <div><b>". $data['comment_author']."</b> "."says </div> <div><br>".$data['date']."</div>
         </div><br>
         <div >
           <p >". stripslashes($data['comment'])." </p>
@@ -33,30 +33,30 @@ if(isset($_POST['displayreply']) && isset ($_POST['post_id'])){
 }
 if (isset($_POST['content']) && isset($_POST['author']) && isset($_POST['author_id']) && isset ($_POST['post_id'])){
     
-    $content=$mysqli -> real_escape_string(addslashes($_POST['content']));
+    $content=$conn -> real_escape_string(addslashes($_POST['content']));
     $author=$_POST['author'];
     $author_id=$_POST['author_id'];
     $date=date('Y-m-d h:i:s');
     $post_id=$_POST['post_id'];
     $query="INSERT INTO $table VALUES('','$content','$author','$post_id','$date','$author_id')";
-    $result=$mysqli->query($query);
+    $result=$conn->query($query);
   
   }
   if(isset($_POST['deleteid'])){
     $id=$_POST['deleteid'];
     $query="DELETE FROM $table WHERE `id`=$id";
-    $res=$mysqli->query($query);
+    $res=$conn->query($query);
 }
 if(isset($_POST['id'])){
     $post_id=$_POST['id'];
     $query="DELETE FROM `post` WHERE `id`=$post_id ";
     $query2="DELETE FROM `comments` WHERE `post_id`=$post_id ";
-    $res=$mysqli->query($query);
-    $res2=$mysqli->query($query2);
+    $res=$conn->query($query);
+    $res2=$conn->query($query2);
 }
 if(isset($_POST['view_id'])){
     $eventid=$_POST['view_id'];
-    $query=$mysqli->query("SELECT `event_details` FROM `events` WHERE `event_id`='$eventid'");
+    $query=$conn->query("SELECT `event_details` FROM `events` WHERE `event_id`='$eventid'");
     if(mysqli_num_rows($query)){
         $data=$query->fetch_assoc();
 
@@ -68,7 +68,7 @@ if(isset($_POST['view_id'])){
 if(isset($_POST['search']) && isset($_POST['univ'])){
     $search=$_POST['search'];
     $univ=$_POST['univ'];
-    $query=$mysqli->query("SELECT * FROM `events` where (`event_name` like ('%$search%') OR `event_details` like ('%$search%')) AND `org`='$univ'");
+    $query=$conn->query("SELECT * FROM `events` where (`event_name` like ('%$search%') OR `event_details` like ('%$search%')) AND `org`='$univ'");
     if(mysqli_num_rows($query)){
 
        while( $data=$query->fetch_assoc()){
@@ -98,7 +98,7 @@ if(isset($_POST['search']) && isset($_POST['univ'])){
 if(isset($_POST['event_id'])){
     $event_id=$_POST['event_id'];
     $query="DELETE FROM `events` WHERE `event_id`=$event_id ";
-    $res=$mysqli->query($query);
+    $res=$conn->query($query);
 }
 ?>
     

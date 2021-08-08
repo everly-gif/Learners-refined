@@ -33,6 +33,7 @@ if (isset($_POST['thread_submit'])){
 
 
 <link rel="stylesheet" href="./css/classroom.css?v=<?php echo time();?>">
+<link rel="stylesheet" href="./css/doubt_forum.css?v=<?php echo time();?>">
 </head>
 <body>
     <?php include './partials/nav.php'?>
@@ -104,7 +105,7 @@ if (isset($_POST['thread_submit'])){
                         $query2="SELECT `id`,`name` FROM `users` WHERE `id`= '$id'";
                         $username=$conn->query($query2);
                         $res=$username->fetch_assoc();
-                        echo '<div class="container"><p style="margin-bottom:0;color:orangered;font-size:15px;">'.$res['name'].' shared </p>';
+                        echo '<div class="containers"><p class="name">'.$res['name'].' shared </p>';
                         echo '<p>'.$data['title'].'  </p>';
                         echo '<p>'.substr($data['content'],0,200).'.....'.' </p>'.'<a href="post.php?id='.$data['id'].'">Help Out</a></div>';
                     }
@@ -116,7 +117,7 @@ if (isset($_POST['thread_submit'])){
                         $query2="SELECT `id`,`name` FROM `users` WHERE `id`= '$id'";
                         $username=$conn->query($query2);
                         $res=$username->fetch_assoc();
-                        echo '<div class="container"><p style="margin-bottom:0;color:orangered;font-size:15px;">'.$res['name'].' shared </p>';
+                        echo '<div class="containers"><p class="name">'.$res['name'].' shared </p>';
                         echo '<p>'.$data['title'].'  </p>';
                         echo '<p>'.substr($data['content'],0,200).'.......'.'</p>'.'<a href="post.php?id='.$data['id'].'">Help Out</a></div>';
                     }
@@ -132,7 +133,7 @@ if (isset($_POST['thread_submit'])){
         $query2="SELECT `id`,`name` FROM `users` WHERE `id`= '$id'";
         $username=$conn->query($query2);
         $res=$username->fetch_assoc();
-        echo '<div class="container"><p style="margin-bottom:0;color:orangered;font-size:15px;">'.$res['name'].' shared </p>';
+        echo '<div class="containers"><p class="name">'.$res['name'].' shared </p>';
         echo '<p>'.$data['title'].'  </p>';
         if (strlen($data['content'])<200){
             echo '<p>'.$data['content'].'</p>'.'<a href="post.php?id='.$data['id'].'">Help Out</a></div>';
