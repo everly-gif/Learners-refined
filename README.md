@@ -12,7 +12,7 @@ Our main Objective while developing this solution was to identify a solution for
 # The current issues we found in the current online education system
 Students easily feel demotivated and detached.<br>
 No Proper effective communication between authorities and students<br>
-No awareness what is happening around campus(extra-curricular activities)<br>
+No awareness of what is happening around campus( online extra-curricular activities)<br>
 No proper doubt clarification system<br>
 Less/ineffective peer-to-peer and teacher-peer communication<br>
 
@@ -26,10 +26,10 @@ Instant feedback portal<br>
 Specified events tab , to keep in track of extra-curricular activities.<br>
 
 # Technologies
-Bootstrap4 CSS3 AJAX Jqeury PHP MySQL CKediotr4
+Bootstrap4 CSS3 AJAX Jqeury PHP MySQL CKeditor4
 
 # Demo Video
-https://drive.google.com/file/d/1U3IEL4JTWD-VF0sBtWTwT8cUkzmHRGjY/view?usp=sharing
+[View Demo](https://drive.google.com/file/d/1U3IEL4JTWD-VF0sBtWTwT8cUkzmHRGjY/view?usp=sharing)
 
 # Team Hack it
 Rajmun Khan<br>
