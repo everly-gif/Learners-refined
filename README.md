@@ -16,7 +16,7 @@ No awareness of what is happening around campus( online extra-curricular activit
 No proper doubt clarification system<br>
 Less/ineffective peer-to-peer and teacher-peer communication<br>
 
-# What Learner's Refined Solves
+# What Learner's Refined Provides
 One stop portal for both students and teachers<br>
 Multiple classes and assignments can be created by different organizations<br>
 Direct upload of 'n' number of submissions for assignments into the system to be graded.<br>
